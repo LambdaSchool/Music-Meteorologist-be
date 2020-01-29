@@ -1,4 +1,6 @@
-const db = require('../../data/db-config.js');
+const db = require("../../data/db-config.js");
+
+// TEST COMMENT
 
 module.exports = {
   find,
@@ -8,30 +10,30 @@ module.exports = {
   findByEmail,
   add,
   update,
-  remove,
+  remove
 };
 
 function find() {
-  return db('users');
+  return db("users");
 }
 
 function findById(id) {
-  return db('users')
-    .where('id', id)
+  return db("users")
+    .where("id", id)
     .first()
     .then(user => (user ? user : null));
 }
 
 function findBySpotifyId(spotify_id) {
   console.log(spotify_id);
-  return db('users')
-    .where('spotify_user_id', spotify_id)
+  return db("users")
+    .where("spotify_user_id", spotify_id)
     .first()
     .then(user => (user ? user : null));
 }
 
 function findBy(filter) {
-  return db('users')
+  return db("users")
     .where(filter)
     .first()
     .then(user => (user ? user : null));
@@ -45,26 +47,26 @@ function findBy(filter) {
 } */
 
 function findByEmail(user_email) {
-  return db('users')
-    .where('email', user_email)
+  return db("users")
+    .where("email", user_email)
     .first()
     .then(user => (user ? user : null));
 }
 
 function add(user) {
-  return db('users')
-    .insert(user, 'id')
+  return db("users")
+    .insert(user, "id")
     .then(([id]) => this.findById(id));
 }
 
 function update(id, changes) {
-  return db('users')
+  return db("users")
     .where({ id })
     .update(changes);
 }
 
 function remove(id) {
-  return db('users')
-    .where('id', id)
+  return db("users")
+    .where("id", id)
     .del();
 }
